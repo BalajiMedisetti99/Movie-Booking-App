@@ -1,0 +1,30 @@
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse / STS
+.metadata/
+.project
+.classpath
+.settings/
+
+# SonarLint
+.sonarlint/
+
+# Maven
+target/
+
+# Logs
+*.log
+logs/
+
+# VS Code
+.vscode/
+
+# Build
+out/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Ecommerce-App/src/main/resources/templates/customer.html&apos; to &apos;add-customer.html&apos;" description="Rename resource &apos;customer.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/templates/customer.html" name="add-customer.html" stamp="1754254076663" updateReferences="true"/>
-</session>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/Booking-Service-MS/Booking-Service-MS.iml" filepath="$PROJECT_DIR$/Booking-Service-MS/Booking-Service-MS.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Wipro_SpringBoot.iml" filepath="$PROJECT_DIR$/.idea/Wipro_SpringBoot.iml" />
-    </modules>
-  </component>
-</project>
