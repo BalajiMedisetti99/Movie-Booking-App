@@ -1,0 +1,110 @@
+spring:
+  application:
+    name: Api-Gateway
+
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 10s
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+      routes:
+        - id: booking-service
+          uri: lb://BOOKING-SERVICE-MS
+          predicates:
+            - Path=/booking-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: customer-service
+          uri: lb://CUSTOMER-SERVICE-MS
+          predicates:
+            - Path=/customer-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: movie-service
+          uri: lb://MOVIE-SERVICE-MS
+          predicates:
+            - Path=/movie-service/**
+          filters:
+            - StripPrefix=1
+
+        - id: theater-service
+          uri: lb://THEATER-SERVICE-MS
+          predicates:
+            - Path=/theater-service/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka/}
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+
+server:
+  port: 9090
+
+  shutdown: graceful
+
+  compression:
+    enabled: true
+    mime-types:
+      - application/json
+      - application/xml
+      - text/html
+      - text/xml
+      - text/plain
+    min-response-size: 2048
+
+  http2:
+    enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    reactor.netty.http.client: INFO
+    org.springframework.web.reactive.function.client.ExchangeFunctions: INFO
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+  endpoint:
+    health:
+      show-details: always
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+    urls:
+      - name: Booking Service
+        url: http://localhost:1111/v3/api-docs
+
+      - name: Customer Service
+        url: http://localhost:2222/v3/api-docs
+
+      - name: Movie Service
+        url: http://localhost:3333/v3/api-docs
+
+      - name: Theater Service
+        url: http://localhost:4444/v3/api-docs
